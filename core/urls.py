@@ -6,9 +6,9 @@ urlpatterns = [
     path('', index, name='root'),
     path('login', login, name='login'),
     path('registro', registro, name='registro'),
-    path('admin/dashboard', admin_dashboard, name='admin.dashboard'),
-    path('admin/tarjetas', admin_tarjetas, name='admin.tarjetas'),
-    path('admin/usuarios', admin_usuarios, name='admin.usuarios'),
+    path('administrador/dashboard', admin_dashboard, name='admin.dashboard'),
+    path('administrador/tarjetas', admin_tarjetas, name='admin.tarjetas'),
+    path('administrador/usuarios', admin_usuarios, name='admin.usuarios'),
 
     path('user/home', user_home, name='user.home'),
     path('user/movimientos', user_movimiento, name='user.movimientos'),
