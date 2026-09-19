@@ -11,8 +11,13 @@
 <nav class="sticky top-0 z-30 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2]">
   <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
     <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black text-[16px]">☕</div><span class="font-black text-[18px] tracking-tight serif">Tarjeta CafeyCodigo</span><span class="hidden md:inline text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-[#FEFAE0]">TEMPLATE</span></div>
-    <div class="flex items-center gap-2"><a href="login.html" class="hidden sm:inline-flex px-5 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold hover:bg-[#FEFAE0]">Iniciar sesión</a><a href="registro.html" class="px-5 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold hover:bg-[#2D1B0F]">Crear cuenta</a></div>
-  </div>
+    <div class="flex items-center gap-2">
+      
+      <a href="{% url 'login' %}" class="hidden sm:inline-flex px-5 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold hover:bg-[#FEFAE0]">Iniciar sesión</a>
+      
+      <a href="{% url 'registro' %}" class="px-5 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold hover:bg-[#2D1B0F]">Crear cuenta</a></div>
+  
+    </div>
 </nav>
 
 <div class="max-w-[1440px] mx-auto px-4 lg:px-8 py-8 lg:py-10">
@@ -23,8 +28,8 @@
       <p class="mt-4 text-[16px] lg:text-[17px] text-[#6F4C3E] leading-relaxed max-w-[560px]">Template elegante inspirado en cafeterías artesanales. Tonos espresso, canela y latte para una experiencia acogedora. Administra usuarios, emite tarjetas virtuales y físicas, y ofrece un portal cliente con CVV dinámico y gestión en tiempo real. Todo en HTML + Tailwind v4.</p>
       
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="registro.html" class="px-7 py-3.5 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black flex items-center gap-2">Explorar tarjetas ☕</a>
-        <a href="user-tarjetas.html" class="px-7 py-3.5 rounded-full bg-white border border-[#E6CCB2] font-bold hover:bg-[#FEFAE0]">Ver mis tarjetas</a>
+        <a href="{% url 'registro' %}" class="px-7 py-3.5 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black flex items-center gap-2">Explorar tarjetas ☕</a>
+        <a href="{% url 'user.tarjetas' %}" class="px-7 py-3.5 rounded-full bg-white border border-[#E6CCB2] font-bold hover:bg-[#FEFAE0]">Ver mis tarjetas</a>
       </div>
 
       <div class="mt-7 grid grid-cols-3 gap-3 max-w-[520px]">
@@ -59,8 +64,8 @@
           </div>
         </div>
         <div class="mt-5 flex gap-2">
-          <a href="login.html" class="flex-1 py-3 rounded-full bg-[#3C2415] text-[#FEFAE0] text-center text-sm font-bold hover:bg-black">Probar como Admin</a>
-          <a href="login.html" class="flex-1 py-3 rounded-full bg-[#8B5E34] text-white text-center text-sm font-bold hover:bg-[#6F4C3E]">Probar como Cliente</a>
+          <a href="{% url 'login' %}" class="flex-1 py-3 rounded-full bg-[#3C2415] text-[#FEFAE0] text-center text-sm font-bold hover:bg-black">Probar como Admin</a>
+          <a href="{% url 'login' %}" class="flex-1 py-3 rounded-full bg-[#8B5E34] text-white text-center text-sm font-bold hover:bg-[#6F4C3E]">Probar como Cliente</a>
         </div>
         <p class="text-center text-xs text-[#8B5E34] mt-3">Acceso demo: admin@cafeycodigo.cl / user@cafeycodigo.cl</p>
       </div>
@@ -90,7 +95,7 @@
         <h3 class="text-[22px] font-black serif mt-1">Tres acabados inspirados en tu café favorito</h3>
         <p class="text-sm text-[#E6CCB2] mt-1">Espresso intenso, Latte suave y Mocha equilibrado — cada una con su degradado y textura.</p>
       </div>
-      <a href="user-tarjetas.html" class="px-6 py-3 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">Ver colección →</a>
+      <a href="{% url 'user.tarjetas' %}" class="px-6 py-3 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">Ver colección →</a>
     </div>
     <div class="mt-6 grid md:grid-cols-3 gap-4 relative">
       <div class="bg-white/10 border border-white/15 rounded-2xl p-4 backdrop-blur"><p class="text-xs font-bold tracking-widest text-[#D4A373]">ESPRESSO</p><p class="text-sm font-bold mt-1">Profundo y elegante</p><p class="text-xs text-[#E6CCB2] mt-1">De #3C2415 a #6F4C3E — ideal para tarjetas físicas premium.</p></div>

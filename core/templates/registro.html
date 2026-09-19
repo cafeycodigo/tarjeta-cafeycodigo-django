@@ -10,8 +10,8 @@
 <body class="bg-[#FFF8E7] text-[#3C2415]">
 <nav class="bg-[#FFFBEB] border-b border-[#E6CCB2]">
   <div class="max-w-[1100px] mx-auto px-4 h-[64px] flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</div><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#D4A373] text-[#3C2415]">REGISTRO</span></a>
-    <div class="flex gap-2"><a href="index.html" class="px-4 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold">← Inicio</a><a href="login.html" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Iniciar sesión</a></div>
+    <a href="{% url 'root' %}" class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</div><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#D4A373] text-[#3C2415]">REGISTRO</span></a>
+    <div class="flex gap-2"><a href="{% url 'root' %}" class="px-4 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold">← Inicio</a><a href="{% url 'login' %}" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Iniciar sesión</a></div>
   </div>
 </nav>
 <div class="max-w-[1100px] mx-auto px-4 py-8">
@@ -48,11 +48,11 @@
         <label class="flex items-center gap-2 text-xs text-[#6F4C3E]"><input type="checkbox" required class="rounded accent-[#8B5E34]"> Acepto crear mi tarjeta virtual (simulado) ☕</label>
         <button class="w-full py-3.5 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black">Crear cuenta ☕</button>
         <p id="regError" class="hidden text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2"></p>
-        <p class="text-sm text-center text-[#6F4C3E]">¿Ya tienes cuenta? <a href="login.html" class="font-bold text-[#8B5E34] underline">Inicia sesión</a></p>
+        <p class="text-sm text-center text-[#6F4C3E]">¿Ya tienes cuenta? <a href="{% url 'login' %}" class="font-bold text-[#8B5E34] underline">Inicia sesión</a></p>
       </form>
     </div>
   </div>
-  <p class="text-center text-xs text-[#8B5E34]/60 py-8"><a href="index.html" class="underline font-bold">Inicio</a> • Registro • <a href="login.html" class="underline font-bold">Login</a></p>
+  <p class="text-center text-xs text-[#8B5E34]/60 py-8"><a href="{% url 'root' %}" class="underline font-bold">Inicio</a> • Registro • <a href="{% url 'login' %}" class="underline font-bold">Login</a></p>
 </div>
 <script src="js/app.js"></script>
 <script>
@@ -72,7 +72,7 @@ function handleRegister(e){
   DB.cards.push(newCard);
   DB.session={userId:newUser.id, role:'user', token:'fake', loginAt:new Date().toISOString()};
   saveDB(); auditLog(`Nueva cuenta: ${email}`); toast('Cuenta creada ☕ + tarjeta latte asignada','ok');
-  setTimeout(()=> location.href='user-home.html', 700);
+  setTimeout(()=> location.href="{% url 'user.home' %}", 700);
 }
 </script>
 </body>

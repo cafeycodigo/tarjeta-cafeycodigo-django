@@ -10,8 +10,8 @@
 <body class="bg-[#FFF8E7] text-[#3C2415] antialiased">
 <nav class="bg-[#FFFBEB] border-b border-[#E6CCB2]">
   <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</div><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">ACCESO</span></a>
-    <div class="flex gap-2"><a href="index.html" class="px-4 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold">← Inicio</a><a href="registro.html" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Crear cuenta</a></div>
+    <a href="{% url 'root' %}" class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</div><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">ACCESO</span></a>
+    <div class="flex gap-2"><a href="{% url 'root' %}" class="px-4 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold">← Inicio</a><a href="{% url 'registro' %}" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Crear cuenta</a></div>
   </div>
 </nav>
 <div class="max-w-[1100px] mx-auto px-4 py-8 lg:py-10">
@@ -31,7 +31,7 @@
         </div>
         <button class="w-full py-3.5 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">Entrar ☕</button>
         <p id="loginError" class="hidden text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2"></p>
-        <p class="text-sm text-center text-[#6F4C3E]">¿No tienes cuenta? <a href="registro.html" class="font-bold text-[#8B5E34] underline">Regístrate</a></p>
+        <p class="text-sm text-center text-[#6F4C3E]">¿No tienes cuenta? <a href="{% url 'registro' %}" class="font-bold text-[#8B5E34] underline">Regístrate</a></p>
       </form>
       <div class="mt-6 p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2]">
         <p class="text-xs font-bold tracking-widest text-[#8B5E34]">TEMPLATE • 2 ROLES</p><p class="text-xs text-[#6F4C3E] mt-1">Admin accede al panel de gestión. Cliente al portal de tarjetas. Todo simulado en LocalStorage.</p>
@@ -57,7 +57,7 @@
       </div>
     </div>
   </div>
-  <p class="text-center text-xs text-[#8B5E34]/70 py-8">Template Tarjeta CafeyCodigo • Paleta cafetería • <a href="index.html" class="underline font-bold">Inicio</a> • <a href="registro.html" class="underline font-bold">Registro</a></p>
+  <p class="text-center text-xs text-[#8B5E34]/70 py-8">Template Tarjeta CafeyCodigo • Paleta cafetería • <a href="{% url 'root' %}" class="underline font-bold">Inicio</a> • <a href="{% url 'registro' %}" class="underline font-bold">Registro</a></p>
 </div>
 <script src="js/app.js"></script>
 <script>
@@ -77,7 +77,7 @@ function handleLogin(ev){
   if(user.estado==='Bloqueado'||user.estado==='Suspendido'){ err.textContent=`Cuenta ${user.estado}. Contacta a soporte.`; err.classList.remove('hidden'); toast(`Cuenta ${user.estado}`,'err'); return; }
   DB.session={userId:user.id, role:user.role, token:'fake-jwt-'+user.role, loginAt:new Date().toISOString()};
   saveDB(); auditLog(`Inicio de sesión (${user.role})`); toast(`Bienvenido ${user.name}`,'ok');
-  setTimeout(()=> location.href = user.role==='admin' ? 'admin-dashboard.html' : 'user-home.html', 600);
+  setTimeout(()=> location.href = user.role==='admin' ? "{% url 'admin.dashboard' %}" : "{% url 'user.home' %}", 600);
 }
 </script>
 </body>

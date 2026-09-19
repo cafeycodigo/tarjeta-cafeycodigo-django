@@ -10,10 +10,10 @@
 <body class="bg-[#FFF8E7] text-[#3C2415]">
 <nav class="sticky top-0 z-30 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2]">
   <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
-    <div class="flex items-center gap-2"><a href="user-home.html" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">MIS TARJETAS</span></div>
+    <div class="flex items-center gap-2"><a href="{% url 'user.home' %}" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">MIS TARJETAS</span></div>
     <div class="flex items-center gap-2">
-      <a href="user-home.html" class="px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">← Inicio</a>
-      <a href="user-movimientos.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Movimientos</a>
+      <a href="{% url 'user.home' %}" class="px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">← Inicio</a>
+      <a href="{% url 'user.movimientos' %}" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Movimientos</a>
       <div id="userBadge" class="hidden items-center gap-2"><img id="badgeAvatar" src="" class="w-8 h-8 rounded-full border border-[#E6CCB2]"><span id="badgeName" class="hidden sm:inline text-sm font-bold"></span></div>
       <button id="btnLogout" onclick="logout()" class="hidden px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Salir</button>
     </div>
@@ -38,10 +38,10 @@
         <button onclick="requestVirtual()" class="mt-4 w-full py-3 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black">+ Solicitar latte virtual</button>
         <p class="text-xs text-[#8D7B6B] text-center mt-2">Cupo inicial $600.000 — aroma instantáneo.</p>
       </div>
-      <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4 flex justify-between items-center"><span class="text-sm font-bold text-[#3C2415]">¿Ver movimientos?</span><a href="user-movimientos.html" class="px-4 py-2 rounded-full bg-[#8B5E34] text-white text-xs font-bold">Ir →</a></div>
+      <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4 flex justify-between items-center"><span class="text-sm font-bold text-[#3C2415]">¿Ver movimientos?</span><a href="{% url 'user.movimientos' %}" class="px-4 py-2 rounded-full bg-[#8B5E34] text-white text-xs font-bold">Ir →</a></div>
     </div>
   </div>
-  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • <a href="user-home.html" class="underline">← Inicio</a> • <a href="user-movimientos.html" class="underline font-bold">Movimientos →</a></p>
+  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • <a href="{% url 'user.home' %}" class="underline">← Inicio</a> • <a href="{% url 'user.movimientos' %}" class="underline font-bold">Movimientos →</a></p>
 </div>
 <script src="js/app.js"></script>
 <script>

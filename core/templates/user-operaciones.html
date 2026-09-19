@@ -10,10 +10,10 @@
 <body class="bg-[#FFF8E7] text-[#3C2415]">
 <nav class="sticky top-0 z-30 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2]">
   <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
-    <div class="flex items-center gap-2"><a href="user-home.html" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#D4A373] text-[#3C2415]">OPERACIONES</span></div>
+    <div class="flex items-center gap-2"><a href="{% url 'user.home' %}" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#D4A373] text-[#3C2415]">OPERACIONES</span></div>
     <div class="flex items-center gap-2">
-      <a href="user-home.html" class="px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">← Inicio</a>
-      <a href="user-tarjetas.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Tarjetas</a>
+      <a href="{% url 'user.home' %}" class="px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">← Inicio</a>
+      <a href="{% url 'user.tarjetas' %}" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Tarjetas</a>
       <div id="userBadge" class="hidden items-center gap-2"><img id="badgeAvatar" src="" class="w-8 h-8 rounded-full border border-[#E6CCB2]"><span id="badgeName" class="hidden sm:inline text-sm font-bold"></span></div>
       <button id="btnLogout" onclick="logout()" class="hidden px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Salir</button>
     </div>
@@ -35,7 +35,7 @@
         <button class="w-full py-3.5 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">Confirmar pago ☕</button>
       </form>
       <div class="mt-4 p-3 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2] text-xs text-[#6F4C3E]"><span class="font-bold">Tip:</span> El pago libera cupo al instante.</div>
-      <a href="user-movimientos.html" class="mt-4 inline-flex text-xs font-bold text-[#8B5E34] underline">Ver en Movimientos →</a>
+      <a href="{% url 'user.movimientos' %}" class="mt-4 inline-flex text-xs font-bold text-[#8B5E34] underline">Ver en Movimientos →</a>
     </div>
 
     <div class="space-y-6">
@@ -56,7 +56,7 @@
           <button class="px-6 py-3 rounded-full bg-[#8B5E34] font-bold text-sm hover:bg-[#6F4C3E]">Solicitar</button>
         </form>
         <p id="cupoMsg" class="hidden mt-3 text-xs bg-white/10 border border-white/15 rounded-xl px-3 py-2"></p>
-        <a href="user-tarjetas.html" class="text-xs text-[#E6CCB2] underline mt-3 inline-block">Ver cupo en Mis Tarjetas →</a>
+        <a href="{% url 'user.tarjetas' %}" class="text-xs text-[#E6CCB2] underline mt-3 inline-block">Ver cupo en Mis Tarjetas →</a>
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
     <div><p class="font-bold serif">¿Listo para cerrar?</p><p class="text-sm text-[#6F4C3E]">Cierra sesión y vuelve al inicio cuando quieras otro café.</p></div>
     <button onclick="logout()" class="px-6 py-3 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black">Cerrar sesión → Inicio</button>
   </div>
-  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • <a href="user-movimientos.html" class="underline">← Movimientos</a> • <a href="index.html" class="underline font-bold">Inicio</a></p>
+  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • <a href="{% url 'user.movimientos' %}" class="underline">← Movimientos</a> • <a href="{% url 'root' %}" class="underline font-bold">Inicio</a></p>
 </div>
 <script src="js/app.js"></script>
 <script>

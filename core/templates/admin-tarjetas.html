@@ -17,19 +17,19 @@
       </div>
     </div>
     <nav class="flex-1 px-4 space-y-1 overflow-auto">
-      <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 font-semibold transition">
+      <a href="{% url 'admin.dashboard' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 font-semibold transition">
         <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">◈</span><span class="text-sm">Dashboard</span>
       </a>
-      <a href="admin-usuarios.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 font-semibold transition">
+      <a href="{% url 'admin.usuarios' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 font-semibold transition">
         <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">👥</span><span class="text-sm">Usuarios</span><span id="navUsersCount" class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full font-bold">—</span>
       </a>
-      <a href="admin-tarjetas.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#8B5E34] text-white font-bold shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+      <a href="{% url 'admin.tarjetas' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#8B5E34] text-white font-bold shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
         <span class="w-8 h-8 rounded-xl bg-white/15 grid place-items-center text-sm">💳</span><span class="text-sm">Tarjetas</span><span class="ml-auto text-xs bg-white text-[#8B5E34] px-2 py-0.5 rounded-full font-bold">●</span>
       </a>
       <div class="pt-4 mt-4 border-t border-white/10">
         <p class="px-4 text-xs font-bold tracking-widest text-white/40">NAVEGACIÓN</p>
-        <a href="index.html" class="mt-2 flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">← Inicio</a>
-        <a href="user-home.html" class="flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">Portal cliente →</a>
+        <a href="{% url 'root' %}" class="mt-2 flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">← Inicio</a>
+        <a href="{% url 'user.home' %}" class="flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">Portal cliente →</a>
       </div>
     </nav>
     <div class="p-4 border-t border-white/10 bg-[#3C2415]/50">
@@ -45,7 +45,7 @@
     <header class="sticky top-0 z-20 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2] px-4 lg:px-8 h-[64px] flex items-center justify-between">
       <div class="flex items-center gap-3">
         <button onclick="toggleSidebar()" class="lg:hidden w-9 h-9 rounded-xl bg-[#3C2415] text-[#FEFAE0] grid place-items-center">☰</button>
-        <div class="hidden lg:flex items-center gap-2 text-sm text-[#8B5E34]"><a href="admin-dashboard.html" class="hover:underline">Admin</a><span class="text-[#E6CCB2]">/</span><span class="font-semibold text-[#3C2415]">Tarjetas</span></div>
+        <div class="hidden lg:flex items-center gap-2 text-sm text-[#8B5E34]"><a href="{% url 'admin.dashboard' %}" class="hover:underline">Admin</a><span class="text-[#E6CCB2]">/</span><span class="font-semibold text-[#3C2415]">Tarjetas</span></div>
         <span class="lg:hidden font-black serif">Tarjetas</span>
       </div>
       <div class="flex items-center gap-2">
@@ -77,7 +77,7 @@
           <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4"><p class="text-sm font-bold text-[#3C2415]">Ajuste manual</p><p class="text-xs text-[#6F4C3E] mt-1">Usa “Editar cupo” para reclamos con calidez artesanal.</p></div>
         </div>
       </div>
-      <p class="text-center text-xs text-[#8B5E34]/50 py-8">Sidebar izquierda = Admin diferenciado • <a href="admin-dashboard.html" class="underline font-bold">← Dashboard</a></p>
+      <p class="text-center text-xs text-[#8B5E34]/50 py-8">Sidebar izquierda = Admin diferenciado • <a href="{% url 'admin.dashboard' %}" class="underline font-bold">← Dashboard</a></p>
     </main>
   </div>
 </div>

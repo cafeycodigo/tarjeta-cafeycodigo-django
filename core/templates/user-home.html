@@ -10,11 +10,11 @@
 <body class="bg-[#FFF8E7] text-[#3C2415]">
 <nav class="sticky top-0 z-30 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2]">
   <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
-    <div class="flex items-center gap-2"><a href="user-home.html" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">CLIENTE</span></div>
+    <div class="flex items-center gap-2"><a href="{% url 'user.home' %}" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">CLIENTE</span></div>
     <div class="flex items-center gap-2">
-      <a href="user-tarjetas.html" class="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Mis Tarjetas</a>
-      <a href="user-movimientos.html" class="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Movimientos</a>
-      <a href="user-operaciones.html" class="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Operaciones</a>
+      <a href="{% url 'user.tarjetas' %}" class="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Mis Tarjetas</a>
+      <a href="{% url 'user.movimientos' %}" class="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Movimientos</a>
+      <a href="{% url 'user.operaciones' %}" class="hidden md:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Operaciones</a>
       <div id="userBadge" class="hidden items-center gap-2"><img id="badgeAvatar" src="" class="w-8 h-8 rounded-full border border-[#E6CCB2]"><span id="badgeName" class="hidden sm:inline text-sm font-bold"></span></div>
       <button id="btnLogout" onclick="logout()" class="hidden px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Salir</button>
     </div>
@@ -38,23 +38,23 @@
 
   <div class="mt-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
     <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
-      <div class="flex items-center justify-between"><h3 class="font-black serif">Últimos movimientos</h3><a href="user-movimientos.html" class="text-xs font-bold text-[#8B5E34] underline">Ver todo →</a></div>
+      <div class="flex items-center justify-between"><h3 class="font-black serif">Últimos movimientos</h3><a href="{% url 'user.movimientos' %}" class="text-xs font-bold text-[#8B5E34] underline">Ver todo →</a></div>
       <div id="lastTrx" class="mt-4 space-y-2"></div>
-      <div class="mt-4 p-3 rounded-2xl bg-[#FFF8E7] border border-[#E6CCB2] flex justify-between items-center"><span class="text-xs font-bold text-[#6F4C3E]">¿Detalle completo?</span><a href="user-movimientos.html" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-xs font-bold">Ir a Movimientos</a></div>
+      <div class="mt-4 p-3 rounded-2xl bg-[#FFF8E7] border border-[#E6CCB2] flex justify-between items-center"><span class="text-xs font-bold text-[#6F4C3E]">¿Detalle completo?</span><a href="{% url 'user.movimientos' %}" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-xs font-bold">Ir a Movimientos</a></div>
     </div>
     <div class="space-y-4">
       <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
         <h3 class="font-black serif">Tu colección</h3>
         <div class="mt-4 grid gap-3">
-          <a href="user-tarjetas.html" class="flex items-center justify-between p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2] hover:bg-[#F5EBDC]"><div><p class="font-bold text-[#3C2415]">Mis Tarjetas</p><p class="text-xs text-[#8B5E34]">CVV dinámico, bloqueo y cupo</p></div><span class="w-9 h-9 rounded-full bg-[#8B5E34] text-white grid place-items-center">→</span></a>
-          <a href="user-movimientos.html" class="flex items-center justify-between p-4 rounded-2xl bg-white border border-[#E6CCB2] hover:bg-[#FFF8E7]"><div><p class="font-bold">Movimientos</p><p class="text-xs text-[#6F4C3E]">Historial y comprobantes</p></div><span class="w-9 h-9 rounded-full bg-[#3C2415] text-[#FEFAE0] grid place-items-center">→</span></a>
-          <a href="user-operaciones.html" class="flex items-center justify-between p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2] hover:bg-[#F5EBDC]"><div><p class="font-bold text-[#3C2415]">Operaciones</p><p class="text-xs text-[#6F4C3E]">Pagar, transferir, solicitar cupo</p></div><span class="w-9 h-9 rounded-full bg-[#A47148] text-white grid place-items-center">→</span></a>
+          <a href="{% url 'user.tarjetas' %}" class="flex items-center justify-between p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2] hover:bg-[#F5EBDC]"><div><p class="font-bold text-[#3C2415]">Mis Tarjetas</p><p class="text-xs text-[#8B5E34]">CVV dinámico, bloqueo y cupo</p></div><span class="w-9 h-9 rounded-full bg-[#8B5E34] text-white grid place-items-center">→</span></a>
+          <a href="{% url 'user.movimientos' %}" class="flex items-center justify-between p-4 rounded-2xl bg-white border border-[#E6CCB2] hover:bg-[#FFF8E7]"><div><p class="font-bold">Movimientos</p><p class="text-xs text-[#6F4C3E]">Historial y comprobantes</p></div><span class="w-9 h-9 rounded-full bg-[#3C2415] text-[#FEFAE0] grid place-items-center">→</span></a>
+          <a href="{% url 'user.operaciones' %}" class="flex items-center justify-between p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2] hover:bg-[#F5EBDC]"><div><p class="font-bold text-[#3C2415]">Operaciones</p><p class="text-xs text-[#6F4C3E]">Pagar, transferir, solicitar cupo</p></div><span class="w-9 h-9 rounded-full bg-[#A47148] text-white grid place-items-center">→</span></a>
         </div>
       </div>
-      <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4"><p class="text-sm font-bold text-[#3C2415]">Tip cafetero</p><p class="text-xs text-[#6F4C3E] mt-1">Tu tarjeta latte virtual se actualiza cada 30s — como un espresso recién hecho.</p><a href="user-tarjetas.html" class="text-xs font-bold underline text-[#8B5E34] mt-2 inline-block">Gestionar tarjetas →</a></div>
+      <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4"><p class="text-sm font-bold text-[#3C2415]">Tip cafetero</p><p class="text-xs text-[#6F4C3E] mt-1">Tu tarjeta latte virtual se actualiza cada 30s — como un espresso recién hecho.</p><a href="{% url 'user.tarjetas' %}" class="text-xs font-bold underline text-[#8B5E34] mt-2 inline-block">Gestionar tarjetas →</a></div>
     </div>
   </div>
-  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • Estilo cafetería • <a href="user-tarjetas.html" class="underline font-bold">Mis Tarjetas →</a> • <a href="index.html" class="underline">Inicio</a></p>
+  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • Estilo cafetería • <a href="{% url 'user.tarjetas' %}" class="underline font-bold">Mis Tarjetas →</a> • <a href="{% url 'root' %}" class="underline">Inicio</a></p>
 </div>
 <script src="js/app.js"></script>
 <script>

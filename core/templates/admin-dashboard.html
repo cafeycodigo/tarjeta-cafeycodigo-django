@@ -25,25 +25,25 @@
       </div>
     </div>
     <nav class="flex-1 px-4 space-y-1 overflow-auto">
-      <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#8B5E34] text-white font-bold shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+      <a href="{% url 'admin.dashboard' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#8B5E34] text-white font-bold shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
         <span class="w-8 h-8 rounded-xl bg-white/15 grid place-items-center text-sm">◈</span>
         <span class="text-sm">Dashboard</span>
         <span class="ml-auto text-xs bg-white text-[#8B5E34] px-2 py-0.5 rounded-full font-bold">●</span>
       </a>
-      <a href="admin-usuarios.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 hover:text-white font-semibold transition">
+      <a href="{% url 'admin.usuarios' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 hover:text-white font-semibold transition">
         <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">👥</span>
         <span class="text-sm">Usuarios</span>
         <span id="navUsersCount" class="ml-auto text-xs bg-[#D4A373] text-[#3C2415] px-2 py-0.5 rounded-full font-bold">—</span>
       </a>
-      <a href="admin-tarjetas.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 hover:text-white font-semibold transition">
+      <a href="{% url 'admin.tarjetas' %}" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 hover:text-white font-semibold transition">
         <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">💳</span>
         <span class="text-sm">Tarjetas</span>
         <span id="navCardsCount" class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full font-bold">—</span>
       </a>
       <div class="pt-4 mt-4 border-t border-white/10">
         <p class="px-4 text-xs font-bold tracking-widest text-white/40">NAVEGACIÓN</p>
-        <a href="index.html" class="mt-2 flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">← Volver a Inicio</a>
-        <a href="user-home.html" class="flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">Ver portal cliente →</a>
+        <a href="{% url 'root' %}" class="mt-2 flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">← Volver a Inicio</a>
+        <a href="{% url 'user.home' %}" class="flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">Ver portal cliente →</a>
       </div>
     </nav>
     <div class="p-4 border-t border-white/10 bg-[#3C2415]/50">
@@ -73,8 +73,8 @@
       </div>
       <div class="flex items-center gap-2">
         <span class="hidden sm:inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full bg-[#FEFAE0] border border-[#E6CCB2] text-[#3C2415]">☕ Modo Admin</span>
-        <a href="admin-usuarios.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Usuarios</a>
-        <a href="admin-tarjetas.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#8B5E34] text-white text-sm font-bold">Tarjetas</a>
+        <a href="{% url 'admin.usuarios' %}" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Usuarios</a>
+        <a href="{% url 'admin.tarjetas' %}" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#8B5E34] text-white text-sm font-bold">Tarjetas</a>
       </div>
     </header>
 
@@ -86,14 +86,14 @@
         <h1 class="text-[28px] lg:text-[34px] font-black tracking-tight mt-1 serif relative">Panel Tarjeta CafeyCodigo</h1>
         <p class="text-sm text-white/80 mt-2 max-w-[720px] relative">Centro de control cálido para tu cafetería. Gestiona <b>usuarios</b> y <b>tarjetas</b> con cercanía, revisa métricas y accede rápido a cada sección desde la barra lateral.</p>
         <div class="mt-5 flex flex-wrap gap-3 relative">
-          <a href="admin-usuarios.html" class="px-6 py-3 rounded-full bg-white text-[#3C2415] font-bold hover:bg-[#FEFAE0]">Gestionar usuarios →</a>
-          <a href="admin-tarjetas.html" class="px-6 py-3 rounded-full bg-[#3C2415] text-white font-bold border border-white/20 hover:bg-black">Gestionar tarjetas →</a>
+          <a href="{% url 'admin.usuarios' %}" class="px-6 py-3 rounded-full bg-white text-[#3C2415] font-bold hover:bg-[#FEFAE0]">Gestionar usuarios →</a>
+          <a href="{% url 'admin.tarjetas' %}" class="px-6 py-3 rounded-full bg-[#3C2415] text-white font-bold border border-white/20 hover:bg-black">Gestionar tarjetas →</a>
         </div>
       </div>
 
       <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">USUARIOS TOTALES</p><p id="kpiUsers" class="text-[28px] font-black mt-1 serif">—</p><p class="text-xs text-[#8B5E34] font-semibold">● 3 activos hoy</p><a href="admin-usuarios.html" class="text-xs font-bold text-[#8B5E34] underline mt-2 inline-block">Ver usuarios →</a></div>
-        <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">TARJETAS EMITIDAS</p><p id="kpiCards" class="text-[28px] font-black mt-1 serif">—</p><p class="text-xs text-[#8D7B6B]">BIN 4509</p><a href="admin-tarjetas.html" class="text-xs font-bold text-[#8B5E34] underline mt-2 inline-block">Ver stock →</a></div>
+        <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">USUARIOS TOTALES</p><p id="kpiUsers" class="text-[28px] font-black mt-1 serif">—</p><p class="text-xs text-[#8B5E34] font-semibold">● 3 activos hoy</p><a href="{% url 'admin.usuarios' %}" class="text-xs font-bold text-[#8B5E34] underline mt-2 inline-block">Ver usuarios →</a></div>
+        <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">TARJETAS EMITIDAS</p><p id="kpiCards" class="text-[28px] font-black mt-1 serif">—</p><p class="text-xs text-[#8D7B6B]">BIN 4509</p><a href="{% url 'admin.tarjetas' %}" class="text-xs font-bold text-[#8B5E34] underline mt-2 inline-block">Ver stock →</a></div>
         <div class="bg-[#3C2415] text-[#FEFAE0] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#E6CCB2]">BALANCE SISTEMA</p><p id="kpiBalance" class="text-[26px] font-black mt-1 serif">—</p><p class="text-xs text-[#E6CCB2]/70">Cupo total asignado</p></div>
         <div class="bg-[#D4A373] text-white rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-white/80">PANEL ADMIN</p><p class="text-sm font-bold mt-2">Estados: Activo / KYC / Suspendido</p><p class="text-xs mt-1 opacity-90">Control total cafetero.</p></div>
       </div>
@@ -102,17 +102,17 @@
         <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
           <h3 class="font-black serif">Gestión cafetera — qué encuentras</h3>
           <div class="mt-4 space-y-3 text-sm">
-            <div class="flex gap-3 p-3 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2]"><span class="w-8 h-8 rounded-full bg-[#8B5E34] text-white grid place-items-center shrink-0">1</span><div><p class="font-bold">Gestión de usuarios</p><p class="text-[#6F4C3E] text-xs">Busca, filtra, bloquea/activa y revisa auditoría con calidez.</p><a href="admin-usuarios.html" class="text-xs font-bold text-[#8B5E34] underline">Abrir →</a></div></div>
-            <div class="flex gap-3 p-3 rounded-2xl bg-[#FFF8E7] border border-[#E6CCB2]"><span class="w-8 h-8 rounded-full bg-[#3C2415] text-white grid place-items-center shrink-0">2</span><div><p class="font-bold">Gestión de tarjetas</p><p class="text-[#6F4C3E] text-xs">Emite, asigna, ajusta cupos y congela con estilo espresso.</p><a href="admin-tarjetas.html" class="text-xs font-bold text-[#8B5E34] underline">Abrir →</a></div></div>
+            <div class="flex gap-3 p-3 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2]"><span class="w-8 h-8 rounded-full bg-[#8B5E34] text-white grid place-items-center shrink-0">1</span><div><p class="font-bold">Gestión de usuarios</p><p class="text-[#6F4C3E] text-xs">Busca, filtra, bloquea/activa y revisa auditoría con calidez.</p><a href="{% url 'admin.usuarios' %}" class="text-xs font-bold text-[#8B5E34] underline">Abrir →</a></div></div>
+            <div class="flex gap-3 p-3 rounded-2xl bg-[#FFF8E7] border border-[#E6CCB2]"><span class="w-8 h-8 rounded-full bg-[#3C2415] text-white grid place-items-center shrink-0">2</span><div><p class="font-bold">Gestión de tarjetas</p><p class="text-[#6F4C3E] text-xs">Emite, asigna, ajusta cupos y congela con estilo espresso.</p><a href="{% url 'admin.tarjetas' %}" class="text-xs font-bold text-[#8B5E34] underline">Abrir →</a></div></div>
           </div>
         </div>
         <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
           <h3 class="font-black serif">Última auditoría</h3>
           <div id="auditPreview" class="mt-3 space-y-2 max-h-[220px] overflow-auto"></div>
-          <div class="mt-4 flex gap-2"><a href="admin-usuarios.html" class="flex-1 text-center py-2.5 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Ir a usuarios</a><button onclick="resetDB()" class="px-4 py-2.5 rounded-full bg-white border border-[#E6CCB2] text-sm font-bold">Reset</button></div>
+          <div class="mt-4 flex gap-2"><a href="{% url 'admin.usuarios' %}" class="flex-1 text-center py-2.5 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Ir a usuarios</a><button onclick="resetDB()" class="px-4 py-2.5 rounded-full bg-white border border-[#E6CCB2] text-sm font-bold">Reset</button></div>
         </div>
       </div>
-      <p class="text-center text-xs text-[#8B5E34]/60 py-8">Diferencia clara: <b>Admin con barra lateral</b> • Cliente con barra superior • <a href="index.html" class="underline">Inicio</a></p>
+      <p class="text-center text-xs text-[#8B5E34]/60 py-8">Diferencia clara: <b>Admin con barra lateral</b> • Cliente con barra superior • <a href="{% url 'root' %}" class="underline">Inicio</a></p>
     </main>
   </div>
 </div>
