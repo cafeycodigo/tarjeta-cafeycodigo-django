@@ -1,0 +1,144 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarjeta CafeyCodigo — Panel Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>*{font-family:Inter,sans-serif}.serif{font-family:'Playfair Display',serif}.mono{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-[#FFF8E7] text-[#3C2415]">
+<div class="flex min-h-screen">
+  <!-- Sidebar izquierda — diferencia admin -->
+  <aside id="sidebar" class="hidden lg:flex w-[280px] bg-[#2D1B0F] text-[#FEFAE0] flex-col fixed lg:sticky top-0 h-screen z-40 border-r border-[#3C2415] overflow-hidden">
+    <div class="p-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#FEFAE0] text-[#3C2415] grid place-items-center font-black text-[18px]">☕</div>
+        <div>
+          <p class="font-black serif leading-none text-[16px]">Tarjeta CafeyCodigo</p>
+          <p class="text-[11px] font-bold tracking-[0.15em] text-[#D4A373]">ADMIN PANEL</p>
+        </div>
+      </div>
+      <div class="mt-5 p-3 rounded-2xl bg-[#3C2415] border border-white/10">
+        <p class="text-xs font-bold tracking-widest text-[#D4A373]">MODO BARISTA ADMIN</p>
+        <p class="text-xs text-[#FEFAE0]/70 mt-1">Control total de la cafetería</p>
+      </div>
+    </div>
+    <nav class="flex-1 px-4 space-y-1 overflow-auto">
+      <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#8B5E34] text-white font-bold shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+        <span class="w-8 h-8 rounded-xl bg-white/15 grid place-items-center text-sm">◈</span>
+        <span class="text-sm">Dashboard</span>
+        <span class="ml-auto text-xs bg-white text-[#8B5E34] px-2 py-0.5 rounded-full font-bold">●</span>
+      </a>
+      <a href="admin-usuarios.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 hover:text-white font-semibold transition">
+        <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">👥</span>
+        <span class="text-sm">Usuarios</span>
+        <span id="navUsersCount" class="ml-auto text-xs bg-[#D4A373] text-[#3C2415] px-2 py-0.5 rounded-full font-bold">—</span>
+      </a>
+      <a href="admin-tarjetas.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 hover:text-white font-semibold transition">
+        <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">💳</span>
+        <span class="text-sm">Tarjetas</span>
+        <span id="navCardsCount" class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full font-bold">—</span>
+      </a>
+      <div class="pt-4 mt-4 border-t border-white/10">
+        <p class="px-4 text-xs font-bold tracking-widest text-white/40">NAVEGACIÓN</p>
+        <a href="index.html" class="mt-2 flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">← Volver a Inicio</a>
+        <a href="user-home.html" class="flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">Ver portal cliente →</a>
+      </div>
+    </nav>
+    <div class="p-4 border-t border-white/10 bg-[#3C2415]/50">
+      <div id="userBadge" class="hidden items-center gap-3">
+        <img id="badgeAvatar" src="" class="w-9 h-9 rounded-full border-2 border-[#D4A373]">
+        <div class="flex-1 min-w-0">
+          <p id="badgeName" class="text-sm font-bold leading-none truncate">—</p>
+          <p id="badgeRole" class="text-xs text-[#D4A373]">—</p>
+        </div>
+      </div>
+      <button id="btnLogout" onclick="logout()" class="hidden mt-3 w-full py-2.5 rounded-full bg-[#8B5E34] hover:bg-[#6F4C3E] text-white text-sm font-bold">Cerrar sesión</button>
+      <p class="text-xs text-white/30 text-center mt-3">Tarjeta CafeyCodigo • v1.0</p>
+    </div>
+  </aside>
+
+  <!-- Overlay mobile -->
+  <div id="sidebarOverlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-[#2D1B0F]/60 backdrop-blur-sm z-30 lg:hidden"></div>
+
+  <!-- Main -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <!-- Top bar mobile + desktop -->
+    <header class="sticky top-0 z-20 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2] px-4 lg:px-8 h-[64px] flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSidebar()" class="lg:hidden w-9 h-9 rounded-xl bg-[#3C2415] text-[#FEFAE0] grid place-items-center">☰</button>
+        <div class="hidden lg:flex items-center gap-2 text-sm text-[#8B5E34]"><span class="font-bold">Admin</span><span class="text-[#E6CCB2]">/</span><span class="font-semibold text-[#3C2415]">Dashboard</span></div>
+        <span class="lg:hidden font-black serif">Dashboard</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full bg-[#FEFAE0] border border-[#E6CCB2] text-[#3C2415]">☕ Modo Admin</span>
+        <a href="admin-usuarios.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Usuarios</a>
+        <a href="admin-tarjetas.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-[#8B5E34] text-white text-sm font-bold">Tarjetas</a>
+      </div>
+    </header>
+
+    <main class="flex-1 px-4 lg:px-8 py-6">
+      <div class="bg-gradient-to-br from-[#8B5E34] via-[#A47148] to-[#6F4C3E] text-white rounded-[24px] p-6 lg:p-8 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-72 h-72 bg-white/10 rounded-full blur-[40px]"></div>
+        <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-[#D4A373]/20 rounded-full blur-[40px]"></div>
+        <p class="text-xs font-bold tracking-widest text-[#E6CCB2] relative">PANEL DE ADMINISTRACIÓN • ESTILO CAFETERÍA</p>
+        <h1 class="text-[28px] lg:text-[34px] font-black tracking-tight mt-1 serif relative">Panel Tarjeta CafeyCodigo</h1>
+        <p class="text-sm text-white/80 mt-2 max-w-[720px] relative">Centro de control cálido para tu cafetería. Gestiona <b>usuarios</b> y <b>tarjetas</b> con cercanía, revisa métricas y accede rápido a cada sección desde la barra lateral.</p>
+        <div class="mt-5 flex flex-wrap gap-3 relative">
+          <a href="admin-usuarios.html" class="px-6 py-3 rounded-full bg-white text-[#3C2415] font-bold hover:bg-[#FEFAE0]">Gestionar usuarios →</a>
+          <a href="admin-tarjetas.html" class="px-6 py-3 rounded-full bg-[#3C2415] text-white font-bold border border-white/20 hover:bg-black">Gestionar tarjetas →</a>
+        </div>
+      </div>
+
+      <div class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">USUARIOS TOTALES</p><p id="kpiUsers" class="text-[28px] font-black mt-1 serif">—</p><p class="text-xs text-[#8B5E34] font-semibold">● 3 activos hoy</p><a href="admin-usuarios.html" class="text-xs font-bold text-[#8B5E34] underline mt-2 inline-block">Ver usuarios →</a></div>
+        <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">TARJETAS EMITIDAS</p><p id="kpiCards" class="text-[28px] font-black mt-1 serif">—</p><p class="text-xs text-[#8D7B6B]">BIN 4509</p><a href="admin-tarjetas.html" class="text-xs font-bold text-[#8B5E34] underline mt-2 inline-block">Ver stock →</a></div>
+        <div class="bg-[#3C2415] text-[#FEFAE0] rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-[#E6CCB2]">BALANCE SISTEMA</p><p id="kpiBalance" class="text-[26px] font-black mt-1 serif">—</p><p class="text-xs text-[#E6CCB2]/70">Cupo total asignado</p></div>
+        <div class="bg-[#D4A373] text-white rounded-[20px] p-5"><p class="text-xs font-bold tracking-widest text-white/80">PANEL ADMIN</p><p class="text-sm font-bold mt-2">Estados: Activo / KYC / Suspendido</p><p class="text-xs mt-1 opacity-90">Control total cafetero.</p></div>
+      </div>
+
+      <div class="mt-6 grid lg:grid-cols-2 gap-4">
+        <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
+          <h3 class="font-black serif">Gestión cafetera — qué encuentras</h3>
+          <div class="mt-4 space-y-3 text-sm">
+            <div class="flex gap-3 p-3 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2]"><span class="w-8 h-8 rounded-full bg-[#8B5E34] text-white grid place-items-center shrink-0">1</span><div><p class="font-bold">Gestión de usuarios</p><p class="text-[#6F4C3E] text-xs">Busca, filtra, bloquea/activa y revisa auditoría con calidez.</p><a href="admin-usuarios.html" class="text-xs font-bold text-[#8B5E34] underline">Abrir →</a></div></div>
+            <div class="flex gap-3 p-3 rounded-2xl bg-[#FFF8E7] border border-[#E6CCB2]"><span class="w-8 h-8 rounded-full bg-[#3C2415] text-white grid place-items-center shrink-0">2</span><div><p class="font-bold">Gestión de tarjetas</p><p class="text-[#6F4C3E] text-xs">Emite, asigna, ajusta cupos y congela con estilo espresso.</p><a href="admin-tarjetas.html" class="text-xs font-bold text-[#8B5E34] underline">Abrir →</a></div></div>
+          </div>
+        </div>
+        <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
+          <h3 class="font-black serif">Última auditoría</h3>
+          <div id="auditPreview" class="mt-3 space-y-2 max-h-[220px] overflow-auto"></div>
+          <div class="mt-4 flex gap-2"><a href="admin-usuarios.html" class="flex-1 text-center py-2.5 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Ir a usuarios</a><button onclick="resetDB()" class="px-4 py-2.5 rounded-full bg-white border border-[#E6CCB2] text-sm font-bold">Reset</button></div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-[#8B5E34]/60 py-8">Diferencia clara: <b>Admin con barra lateral</b> • Cliente con barra superior • <a href="index.html" class="underline">Inicio</a></p>
+    </main>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+if(!requireAuth('admin')){}
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar');
+  const ov=document.getElementById('sidebarOverlay');
+  const isHidden=sb.classList.contains('hidden');
+  if(isHidden){
+    sb.classList.remove('hidden'); sb.classList.add('flex','fixed','inset-y-0','left-0');
+    ov.classList.remove('hidden');
+  } else {
+    if(window.innerWidth<1024){ sb.classList.add('hidden'); sb.classList.remove('flex','fixed','inset-y-0','left-0'); ov.classList.add('hidden'); }
+  }
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('kpiUsers').textContent=DB.users.length;
+  document.getElementById('kpiCards').textContent=DB.cards.length;
+  document.getElementById('kpiBalance').textContent=fmtCLP(DB.cards.reduce((a,c)=>a+c.cupo,0));
+  const navU=document.getElementById('navUsersCount'); if(navU) navU.textContent=DB.users.length;
+  const navC=document.getElementById('navCardsCount'); if(navC) navC.textContent=DB.cards.length;
+  document.getElementById('auditPreview').innerHTML=DB.audit.slice(0,4).map(a=>`<div class="bg-[#FFF8E7] border border-[#E6CCB2] rounded-xl px-3 py-2"><p class="text-xs font-bold">${a.accion}</p><p class="text-xs text-[#8D7B6B]">${a.usuario} • ${a.fecha}</p></div>`).join('');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarjeta CafeyCodigo — Movimientos</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>*{font-family:Inter,sans-serif}.serif{font-family:'Playfair Display',serif}.mono{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-[#FFF8E7] text-[#3C2415]">
+<nav class="sticky top-0 z-30 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2]">
+  <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
+    <div class="flex items-center gap-2"><a href="user-home.html" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">MOVIMIENTOS</span></div>
+    <div class="flex items-center gap-2">
+      <a href="user-home.html" class="px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">← Inicio</a>
+      <a href="user-tarjetas.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Tarjetas</a>
+      <a href="user-operaciones.html" class="px-4 py-2 rounded-full bg-[#8B5E34] text-white text-sm font-bold">Operaciones</a>
+      <div id="userBadge" class="hidden items-center gap-2"><img id="badgeAvatar" src="" class="w-8 h-8 rounded-full border border-[#E6CCB2]"><span id="badgeName" class="hidden sm:inline text-sm font-bold"></span></div>
+      <button id="btnLogout" onclick="logout()" class="hidden px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Salir</button>
+    </div>
+  </div>
+</nav>
+<div class="max-w-[1440px] mx-auto px-4 lg:px-8 py-6">
+  <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-6">
+    <p class="text-xs font-bold tracking-widest text-[#8B5E34]">MOVIMIENTOS — PORTAL CLIENTE</p>
+    <h1 class="text-[24px] font-black mt-1 serif">Historial con aroma</h1>
+    <p class="text-sm text-[#6F4C3E] mt-1">Tus compras y pagos servidos como un menú cafetero: filtra por tipo y descarga comprobantes al instante.</p>
+  </div>
+
+  <div class="mt-6 bg-white border border-[#E6CCB2] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgba(60,36,21,0.06)]">
+    <div class="p-5 flex flex-wrap gap-3 items-center justify-between border-b border-[#E6CCB2] bg-[#FFFBEB]">
+      <div class="flex gap-2">
+        <input id="q" oninput="render()" placeholder="Buscar comercio..." class="px-4 py-2.5 rounded-full border border-[#E6CCB2] bg-white text-sm w-[240px] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none">
+        <select id="f" onchange="render()" class="px-4 py-2.5 rounded-full border border-[#E6CCB2] bg-white text-sm font-bold"><option value="todos">Todos</option><option value="Compra">Compras</option><option value="Pago">Pagos</option><option value="Transferencia">Transferencias</option></select>
+      </div>
+      <button onclick="downloadCartola()" class="px-5 py-2.5 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold hover:bg-black">Descargar cartola ☕</button>
+    </div>
+    <div id="list" class="divide-y divide-[#E6CCB2]/50 max-h-[560px] overflow-auto"></div>
+    <div class="p-4 bg-[#FFF8E7] flex justify-between items-center text-xs font-bold text-[#6F4C3E]"><span id="count">— movimientos</span><span class="hidden sm:inline">Comprobantes en .txt — estilo ticket cafetero</span></div>
+  </div>
+  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • <a href="user-tarjetas.html" class="underline">← Tarjetas</a> • <a href="user-operaciones.html" class="underline font-bold">Operaciones →</a></p>
+</div>
+<script src="js/app.js"></script>
+<script>
+if(!requireAuth('user')){}
+function render(){
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  const f=document.getElementById('f').value;
+  let list=DB.trx.filter(t=>t.userId===DB.session.userId);
+  if(q) list=list.filter(t=>t.comercio.toLowerCase().includes(q));
+  if(f!=='todos') list=list.filter(t=>t.tipo===f);
+  list=list.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  document.getElementById('count').textContent=`${list.length} movimientos`;
+  document.getElementById('list').innerHTML=list.map(t=>`<div class="flex items-center justify-between px-6 py-4 hover:bg-[#FFF8E7]"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full ${t.monto>0?'bg-[#FEFAE0] border border-[#E6CCB2] text-[#8B5E34]':'bg-[#3C2415] text-[#FEFAE0]'} grid place-items-center text-sm font-bold">${t.monto>0?'↑':'↓'}</div><div><p class="text-sm font-bold">${t.comercio}</p><p class="text-xs text-[#8D7B6B]">${t.fecha} • ${t.tipo} • ${t.cardId}</p></div></div><div class="text-right"><p class="text-sm font-black ${t.monto>0?'text-[#8B5E34]':''}">${fmtCLP(t.monto)}</p><button onclick="comprobante('${t.id}')" class="text-xs font-bold text-[#8B5E34] underline">Comprobante</button></div></div>`).join('')||`<p class="text-center py-12 text-sm text-[#8D7B6B]">Sin movimientos aún — ¡invita un café! ☕</p>`;
+}
+function comprobante(id){ const t=DB.trx.find(x=>x.id===id); const c=`COMPROBANTE Tarjeta CafeyCodigo\n\nComercio: ${t.comercio}\nMonto: ${fmtCLP(t.monto)}\nTipo: ${t.tipo}\nFecha: ${t.fecha}\nTarjeta: ${t.cardId}\n`; const b=new Blob([c],{type:'text/plain'}); const u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download=`comprobante-${id}.txt`; a.click(); URL.revokeObjectURL(u); toast('Comprobante descargado ☕','ok');}
+function downloadCartola(){ const u=DB.users.find(x=>x.id===DB.session.userId); const list=DB.trx.filter(t=>t.userId===u.id); const c=`CARTOLA Tarjeta CafeyCodigo — ${new Date().toLocaleString('es-CL')}\nUsuario: ${u.name}\n\n`+list.map(t=>`${t.fecha} | ${t.comercio} | ${t.tipo} | ${fmtCLP(t.monto)}`).join('\n'); const b=new Blob([c],{type:'text/plain'}); const url=URL.createObjectURL(b); const a=document.createElement('a'); a.href=url; a.download='cartola-Tarjeta-CafeyCodigo.txt'; a.click(); URL.revokeObjectURL(url); toast('Cartola descargada ☕','ok');}
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>

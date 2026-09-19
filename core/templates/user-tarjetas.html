@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarjeta CafeyCodigo — Mis Tarjetas</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>*{font-family:Inter,sans-serif}.serif{font-family:'Playfair Display',serif}.mono{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-[#FFF8E7] text-[#3C2415]">
+<nav class="sticky top-0 z-30 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2]">
+  <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
+    <div class="flex items-center gap-2"><a href="user-home.html" class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</a><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">MIS TARJETAS</span></div>
+    <div class="flex items-center gap-2">
+      <a href="user-home.html" class="px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">← Inicio</a>
+      <a href="user-movimientos.html" class="hidden sm:inline-flex px-4 py-2 rounded-full bg-white border border-[#E6CCB2] text-sm font-semibold">Movimientos</a>
+      <div id="userBadge" class="hidden items-center gap-2"><img id="badgeAvatar" src="" class="w-8 h-8 rounded-full border border-[#E6CCB2]"><span id="badgeName" class="hidden sm:inline text-sm font-bold"></span></div>
+      <button id="btnLogout" onclick="logout()" class="hidden px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Salir</button>
+    </div>
+  </div>
+</nav>
+<div class="max-w-[1440px] mx-auto px-4 lg:px-8 py-6">
+  <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-6">
+    <p class="text-xs font-bold tracking-widest text-[#8B5E34]">MIS TARJETAS — PORTAL CLIENTE</p>
+    <h1 class="text-[24px] font-black mt-1 serif">Tus tarjetas cafeteras</h1>
+    <p class="text-sm text-[#6F4C3E] mt-1">Colección espresso y latte: consulta saldo, cupo disponible y gestiona cada tarjeta con calidez.</p>
+  </div>
+  <div class="mt-6 grid lg:grid-cols-[1.15fr_0.85fr] gap-6">
+    <div id="cardList" class="grid gap-4"></div>
+    <div class="space-y-4 h-fit">
+      <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6">
+        <h3 class="font-black serif">Seguridad artesanal</h3>
+        <div class="mt-4 space-y-3">
+          <div class="flex items-center justify-between p-4 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7]"><div><p class="text-sm font-bold">Bloqueo global</p><p class="text-xs text-[#8D7B6B]">Pausa todas al instante</p></div><label class="relative inline-flex items-center cursor-pointer"><input id="globalBlock" type="checkbox" onchange="toggleGlobal(this)" class="sr-only peer"><div class="w-12 h-7 bg-[#E6CCB2] rounded-full peer-checked:bg-[#8B5E34] transition"></div><div class="absolute left-1 top-1 w-5 h-5 bg-white rounded-full shadow peer-checked:translate-x-5 transition"></div></label></div>
+          <div class="p-4 rounded-2xl bg-[#FFF8E7] border border-[#E6CCB2]"><p class="text-sm font-bold">CVV dinámico</p><p class="text-xs text-[#6F4C3E] mt-1">Cambia cada 30s — como un espresso recién extraído.</p><div class="mt-3 flex items-center gap-3"><span id="dynCvv" class="mono text-2xl font-black tracking-widest">***</span><button onclick="revealCvv()" class="px-3 py-1.5 rounded-full bg-white border border-[#E6CCB2] text-xs font-bold">Ver CVV</button><span id="cvvTimer" class="text-xs mono text-[#8B5E34]">00:30</span></div></div>
+          <div class="p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2]"><p class="text-sm font-bold text-[#3C2415]">Fechas cafeteras</p><p class="text-xs text-[#6F4C3E] mt-1">Corte 15 • Pago 05 — tueste mensual</p></div>
+        </div>
+        <button onclick="requestVirtual()" class="mt-4 w-full py-3 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black">+ Solicitar latte virtual</button>
+        <p class="text-xs text-[#8D7B6B] text-center mt-2">Cupo inicial $600.000 — aroma instantáneo.</p>
+      </div>
+      <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4 flex justify-between items-center"><span class="text-sm font-bold text-[#3C2415]">¿Ver movimientos?</span><a href="user-movimientos.html" class="px-4 py-2 rounded-full bg-[#8B5E34] text-white text-xs font-bold">Ir →</a></div>
+    </div>
+  </div>
+  <p class="text-center text-xs text-[#8B5E34]/50 py-8">Template Tarjeta CafeyCodigo • <a href="user-home.html" class="underline">← Inicio</a> • <a href="user-movimientos.html" class="underline font-bold">Movimientos →</a></p>
+</div>
+<script src="js/app.js"></script>
+<script>
+if(!requireAuth('user')){}
+let cvvVisible=false, cvvTimer=null, secs=30;
+function cardHtml(c){
+  const disp=c.cupo-c.usado, pct=Math.round(c.usado/c.cupo*100), blocked=c.estado!=='Activa';
+  return `
+  <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-5 shadow-[0_4px_20px_rgba(60,36,21,0.06)]">
+    <div class="h-[190px] rounded-[20px] bg-gradient-to-br ${c.color} p-5 text-white flex flex-col justify-between relative ${blocked?'opacity-60':''}">
+      ${blocked?`<span class="absolute top-3 right-3 text-[11px] font-black bg-white text-[#3C2415] px-2.5 py-1 rounded-full">${c.estado.toUpperCase()}</span>`:''}
+      <div class="flex justify-between"><span class="text-[11px] tracking-[0.2em] font-bold opacity-80">${c.type.toUpperCase()} • Tarjeta CafeyCodigo</span><span>☕</span></div>
+      <p class="mono text-[18px] tracking-[0.18em]">${c.number}</p>
+      <div class="flex justify-between items-end"><div><p class="text-[11px] opacity-70">TITULAR</p><p class="text-sm font-bold">${c.holder}</p></div><div class="text-right"><p class="text-[11px] opacity-70">VENCE / CVV</p><p class="mono text-sm font-bold">${c.expiry} • ${cvvVisible?c.cvv:'•••'}</p></div></div>
+    </div>
+    <div class="mt-4 flex justify-between items-center"><p class="text-sm font-bold">${c.type} ••${c.number.slice(-4)}</p><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" ${c.estado==='Activa'?'checked':''} onchange="toggleCard('${c.id}',this.checked)" class="sr-only peer"><div class="w-11 h-6 bg-[#E6CCB2] rounded-full peer-checked:bg-[#8B5E34]"></div><div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow peer-checked:translate-x-5 transition"></div></label></div>
+    <div class="mt-3 grid grid-cols-3 gap-2 text-center">
+      <div class="bg-[#FFF8E7] rounded-2xl p-3 border border-[#E6CCB2]"><p class="text-xs font-bold text-[#8B5E34]">CUPO</p><p class="text-sm font-black">${fmtCLP(c.cupo)}</p></div>
+      <div class="bg-[#FFF8E7] rounded-2xl p-3 border border-[#E6CCB2]"><p class="text-xs font-bold text-[#8B5E34]">USADO</p><p class="text-sm font-black">${fmtCLP(c.usado)}</p></div>
+      <div class="bg-[#FEFAE0] rounded-2xl p-3 border border-[#E6CCB2]"><p class="text-xs font-bold text-[#6F4C3E]">DISPONIBLE</p><p class="text-sm font-black text-[#6F4C3E]">${fmtCLP(disp)}</p></div>
+    </div>
+    <div class="mt-3 h-2 bg-[#F5EBDC] rounded-full overflow-hidden"><div class="h-full bg-[#8B5E34]" style="width:${pct}%"></div></div>
+    <div class="mt-3 flex gap-2">
+      <button onclick="viewCard('${c.id}')" class="flex-1 py-2.5 rounded-full bg-[#3C2415] text-[#FEFAE0] text-xs font-bold">Ver datos</button>
+      <button onclick="toggleCard('${c.id}',${c.estado!=='Activa'})" class="px-4 py-2.5 rounded-full bg-white border border-[#E6CCB2] text-xs font-bold">${c.estado==='Activa'?'Congelar':'Activar'}</button>
+    </div>
+  </div>`;
+}
+function render(){
+  const list=DB.cards.filter(c=>c.userId===DB.session.userId);
+  document.getElementById('cardList').innerHTML=list.map(c=>cardHtml(c)).join('')||`<div class="bg-white border border-dashed border-[#E6CCB2] rounded-[24px] p-10 text-center"><p class="font-bold">Sin tarjetas</p><p class="text-sm text-[#8D7B6B]">Solicita tu latte virtual ☕</p></div>`;
+}
+function viewCard(id){
+  const c=DB.cards.find(x=>x.id===id);
+  const html = `
+    <div class="h-[140px] rounded-2xl bg-gradient-to-br ${c.color} p-4 text-white flex flex-col justify-between">
+      <p class="text-[11px] tracking-widest font-bold opacity-80">${c.type.toUpperCase()} • Tarjeta CafeyCodigo</p>
+      <p class="mono text-[16px] tracking-widest">${c.number}</p>
+      <div class="flex justify-between items-end"><span class="text-sm font-bold">${c.holder}</span><span class="mono text-sm">${c.expiry} • CVV ${c.cvv}</span></div>
+    </div>
+    <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+      <div class="bg-[#FFF8E7] border border-[#E6CCB2] rounded-2xl p-3"><p class="text-xs font-bold text-[#8B5E34]">CUPO</p><p class="font-black">${fmtCLP(c.cupo)}</p></div>
+      <div class="bg-[#FFF8E7] border border-[#E6CCB2] rounded-2xl p-3"><p class="text-xs font-bold text-[#8B5E34]">DISPONIBLE</p><p class="font-black text-[#8B5E34]">${fmtCLP(c.cupo-c.usado)}</p></div>
+      <div class="bg-[#FFF8E7] border border-[#E6CCB2] rounded-2xl p-3"><p class="text-xs font-bold text-[#8B5E34]">ESTADO</p><p class="font-bold">${c.estado}</p></div>
+      <div class="bg-[#FFF8E7] border border-[#E6CCB2] rounded-2xl p-3"><p class="text-xs font-bold text-[#8B5E34]">LÍMITE ATM</p><p class="font-bold">${fmtCLP(c.limiteATM)}</p></div>
+    </div>
+    <p class="text-xs text-[#8D7B6B] mt-3">Datos simulados — CVV dinámico estilo espresso, cambia cada 30s.</p>
+  `;
+  fcAlert('Detalle de tarjeta', html, {icon:'☕', iconClass:'bg-[#3C2415] text-[#FEFAE0]', subtitle: c.type + ' ••' + c.number.slice(-4)});
+}
+function toggleCard(id,active){ const c=DB.cards.find(x=>x.id===id); c.estado=active?'Activa':'Congelada'; saveDB(); render(); toast(active?'Activada ☕':'Congelada','ok'); auditLog(`Usuario ${active?'activó':'congeló'} ${c.number.slice(-4)}`);}
+function toggleGlobal(el){ DB.cards.filter(c=>c.userId===DB.session.userId).forEach(c=>c.estado=el.checked?'Congelada':'Activa'); saveDB(); render(); toast(el.checked?'Todas bloqueadas':'Desbloqueadas','ok');}
+function revealCvv(){ cvvVisible=true; render(); document.getElementById('dynCvv').textContent=DB.cards.find(c=>c.userId===DB.session.userId)?.cvv||'---'; setTimeout(()=>{cvvVisible=false; document.getElementById('dynCvv').textContent='***'; render();},10000); secs=30; }
+function requestVirtual(){ const u=DB.users.find(x=>x.id===DB.session.userId); const card={id:'c'+Date.now(), userId:u.id, number:'4509 88'+Math.floor(1000+Math.random()*9000)+' '+Math.floor(1000+Math.random()*9000)+' '+Math.floor(1000+Math.random()*9000), holder:u.name.toUpperCase(), expiry:'12/29', cvv:String(Math.floor(100+Math.random()*900)), type:'Virtual', cupo:600000, usado:0, estado:'Activa', limiteATM:200000, color:'from-[#8B5E34] to-[#D4A373]'}; DB.cards.push(card); saveDB(); render(); toast('Latte virtual creada ☕','ok'); auditLog('Solicitud virtual aprobada');}
+function startTimer(){ if(cvvTimer) clearInterval(cvvTimer); cvvTimer=setInterval(()=>{ secs--; if(secs<=0){ secs=30; DB.cards.filter(c=>c.userId===DB.session?.userId).forEach(c=>c.cvv=String(Math.floor(100+Math.random()*900))); saveDB(); if(cvvVisible) document.getElementById('dynCvv').textContent=DB.cards.find(c=>c.userId===DB.session.userId)?.cvv; toast('CVV actualizado','ok'); } document.getElementById('cvvTimer').textContent=`00:${String(secs).padStart(2,'0')}`; if(!cvvVisible) document.getElementById('dynCvv').textContent='***';},1000);}
+document.addEventListener('DOMContentLoaded', ()=>{ render(); startTimer();});
+</script>
+</body>
+</html>

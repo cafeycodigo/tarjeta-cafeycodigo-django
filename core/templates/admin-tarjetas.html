@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarjeta CafeyCodigo — Tarjetas</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>*{font-family:Inter,sans-serif}.serif{font-family:'Playfair Display',serif}.mono{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-[#FFF8E7] text-[#3C2415]">
+<div class="flex min-h-screen">
+  <aside id="sidebar" class="hidden lg:flex w-[280px] bg-[#2D1B0F] text-[#FEFAE0] flex-col fixed lg:sticky top-0 h-screen z-40 border-r border-[#3C2415] overflow-hidden">
+    <div class="p-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#FEFAE0] text-[#3C2415] grid place-items-center font-black text-[18px]">☕</div>
+        <div><p class="font-black serif leading-none text-[16px]">Tarjeta CafeyCodigo</p><p class="text-[11px] font-bold tracking-[0.15em] text-[#D4A373]">ADMIN PANEL</p></div>
+      </div>
+    </div>
+    <nav class="flex-1 px-4 space-y-1 overflow-auto">
+      <a href="admin-dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 font-semibold transition">
+        <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">◈</span><span class="text-sm">Dashboard</span>
+      </a>
+      <a href="admin-usuarios.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/80 font-semibold transition">
+        <span class="w-8 h-8 rounded-xl bg-white/10 grid place-items-center text-sm">👥</span><span class="text-sm">Usuarios</span><span id="navUsersCount" class="ml-auto text-xs bg-white/15 text-white px-2 py-0.5 rounded-full font-bold">—</span>
+      </a>
+      <a href="admin-tarjetas.html" class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#8B5E34] text-white font-bold shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+        <span class="w-8 h-8 rounded-xl bg-white/15 grid place-items-center text-sm">💳</span><span class="text-sm">Tarjetas</span><span class="ml-auto text-xs bg-white text-[#8B5E34] px-2 py-0.5 rounded-full font-bold">●</span>
+      </a>
+      <div class="pt-4 mt-4 border-t border-white/10">
+        <p class="px-4 text-xs font-bold tracking-widest text-white/40">NAVEGACIÓN</p>
+        <a href="index.html" class="mt-2 flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">← Inicio</a>
+        <a href="user-home.html" class="flex items-center gap-3 px-4 py-2.5 rounded-2xl hover:bg-white/10 text-[#FEFAE0]/70 text-sm">Portal cliente →</a>
+      </div>
+    </nav>
+    <div class="p-4 border-t border-white/10 bg-[#3C2415]/50">
+      <div id="userBadge" class="hidden items-center gap-3">
+        <img id="badgeAvatar" src="" class="w-9 h-9 rounded-full border-2 border-[#D4A373]">
+        <div class="flex-1 min-w-0"><p id="badgeName" class="text-sm font-bold leading-none truncate">—</p><p id="badgeRole" class="text-xs text-[#D4A373]">—</p></div>
+      </div>
+      <button id="btnLogout" onclick="logout()" class="hidden mt-3 w-full py-2.5 rounded-full bg-[#8B5E34] hover:bg-[#6F4C3E] text-white text-sm font-bold">Cerrar sesión</button>
+    </div>
+  </aside>
+  <div id="sidebarOverlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-[#2D1B0F]/60 backdrop-blur-sm z-30 lg:hidden"></div>
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="sticky top-0 z-20 bg-[#FFFBEB]/90 backdrop-blur border-b border-[#E6CCB2] px-4 lg:px-8 h-[64px] flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSidebar()" class="lg:hidden w-9 h-9 rounded-xl bg-[#3C2415] text-[#FEFAE0] grid place-items-center">☰</button>
+        <div class="hidden lg:flex items-center gap-2 text-sm text-[#8B5E34]"><a href="admin-dashboard.html" class="hover:underline">Admin</a><span class="text-[#E6CCB2]">/</span><span class="font-semibold text-[#3C2415]">Tarjetas</span></div>
+        <span class="lg:hidden font-black serif">Tarjetas</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline-flex text-xs font-bold px-3 py-1.5 rounded-full bg-[#FEFAE0] border border-[#E6CCB2] text-[#3C2415]">☕ Gestión tarjetas</span>
+        <button onclick="openEmit()" class="px-5 py-2 rounded-full bg-[#8B5E34] text-white text-sm font-bold hover:bg-[#6F4C3E]">+ Emitir</button>
+      </div>
+    </header>
+    <main class="flex-1 px-4 lg:px-8 py-6">
+      <div class="bg-white border border-[#E6CCB2] rounded-[20px] p-6 flex flex-wrap justify-between gap-4">
+        <div><p class="text-xs font-bold tracking-widest text-[#8B5E34]">GESTIÓN DE TARJETAS — PANEL CAFETERÍA</p><h1 class="text-[24px] font-black mt-1 serif">Stock y control de tarjetas</h1><p class="text-sm text-[#6F4C3E] mt-1">Tueste y emisión con calidez: asigna tarjetas, ajusta cupos y límites, congela o anula. Estilo espresso y latte.</p></div>
+        <button onclick="openEmit()" class="hidden lg:inline-flex h-fit px-6 py-3 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">+ Emitir tarjeta</button>
+      </div>
+      <div class="mt-6 grid lg:grid-cols-[1.7fr_0.7fr] gap-6">
+        <div class="bg-white border border-[#E6CCB2] rounded-[24px] p-6 shadow-[0_8px_30px_rgba(60,36,21,0.06)]">
+          <div class="flex items-center justify-between"><h3 class="font-black serif">Tarjetas emitidas</h3><select id="filter" onchange="render()" class="px-3 py-2 rounded-full border border-[#E6CCB2] bg-white text-xs font-bold"><option value="todas">Todas</option><option value="Activa">Activas</option><option value="Congelada">Congeladas</option><option value="Anulada">Anuladas</option></select></div>
+          <div id="grid" class="mt-5 grid sm:grid-cols-2 gap-4"></div>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-[#3C2415] text-[#FEFAE0] rounded-[24px] p-6">
+            <h3 class="font-bold serif">Parámetros cafeteros</h3>
+            <div class="mt-4 space-y-3 text-sm">
+              <div class="flex justify-between items-center bg-white/10 rounded-2xl px-4 py-3"><span>Límite diario ATM</span><span class="mono font-bold">$500.000</span></div>
+              <div class="flex justify-between items-center bg-white/10 rounded-2xl px-4 py-3"><span>Compras internacionales</span><span class="text-[#D4A373] font-bold">● Habilitadas</span></div>
+              <div class="flex justify-between items-center bg-white/10 rounded-2xl px-4 py-3"><span>BIN Range</span><span class="mono text-xs bg-[#FEFAE0] text-[#3C2415] px-2 py-1 rounded-full">4509 88** **** ****</span></div>
+              <button onclick="toast('Parámetros guardados ☕','ok')" class="w-full py-3 rounded-full bg-[#8B5E34] font-bold hover:bg-[#6F4C3E]">Guardar cambios</button>
+            </div>
+            <div class="mt-6 bg-white text-[#3C2415] rounded-2xl p-4"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">BALANCE SISTEMA</p><p id="balance" class="text-xl font-black mt-1 serif">—</p><p class="text-xs text-[#6F4C3E]">Suma de cupos asignados</p></div>
+          </div>
+          <div class="bg-[#FEFAE0] border border-[#E6CCB2] rounded-2xl p-4"><p class="text-sm font-bold text-[#3C2415]">Ajuste manual</p><p class="text-xs text-[#6F4C3E] mt-1">Usa “Editar cupo” para reclamos con calidez artesanal.</p></div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-[#8B5E34]/50 py-8">Sidebar izquierda = Admin diferenciado • <a href="admin-dashboard.html" class="underline font-bold">← Dashboard</a></p>
+    </main>
+  </div>
+</div>
+
+<div id="modal" class="hidden fixed inset-0 z-50 grid place-items-center p-4 bg-[#3C2415]/50 backdrop-blur">
+  <div class="bg-white rounded-[24px] p-6 w-full max-w-[520px] border border-[#E6CCB2]">
+    <div class="flex justify-between items-start"><h3 class="text-xl font-black serif">Emitir tarjeta</h3><button onclick="closeEmit()" class="w-8 h-8 rounded-full bg-[#F5EBDC] grid place-items-center">✕</button></div>
+    <form onsubmit="handleEmit(event)" class="mt-5 space-y-3">
+      <select id="emitUser" class="w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] text-sm"></select>
+      <div class="grid grid-cols-2 gap-3"><select id="emitType" class="px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] text-sm"><option value="Virtual">Virtual</option><option value="Física">Física</option></select><input id="emitCupo" type="number" min="100000" step="50000" required value="800000" class="px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] text-sm"></div>
+      <input id="emitLimite" type="number" value="500000" class="w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] text-sm" placeholder="Límite ATM">
+      <button class="w-full py-3 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">Emitir tarjeta ☕</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+if(!requireAuth('admin')){}
+function toggleSidebar(){ const sb=document.getElementById('sidebar'); const ov=document.getElementById('sidebarOverlay'); const isHidden=sb.classList.contains('hidden'); if(isHidden){ sb.classList.remove('hidden'); sb.classList.add('flex','fixed','inset-y-0','left-0'); ov.classList.remove('hidden'); } else { if(window.innerWidth<1024){ sb.classList.add('hidden'); sb.classList.remove('flex','fixed','inset-y-0','left-0'); ov.classList.add('hidden'); } } }
+function render(){
+  const f=document.getElementById('filter').value;
+  let list=f==='todas'?DB.cards:DB.cards.filter(c=>c.estado===f);
+  document.getElementById('grid').innerHTML=list.map(c=>{
+    const owner=DB.users.find(u=>u.id===c.userId);
+    const pct=Math.round((c.usado/c.cupo)*100);
+    return `<div class="border border-[#E6CCB2] rounded-[20px] p-4 bg-[#FFF8E7]"><div class="h-[140px] rounded-[16px] bg-gradient-to-br ${c.color} p-4 text-white flex flex-col justify-between"><div class="flex justify-between text-[10px] tracking-widest font-bold opacity-80"><span>${c.type.toUpperCase()}</span><span>${c.estado}</span></div><p class="mono text-[14px] tracking-widest">${c.number}</p><div class="flex justify-between items-end"><span class="text-xs font-bold">${c.holder}</span><span class="mono text-xs">${c.expiry}</span></div></div><p class="mt-3 text-sm font-bold">${owner?owner.name:'—'} <span class="text-xs text-[#8D7B6B]">${owner?owner.email:''}</span></p><div class="mt-2 h-2 bg-[#E6CCB2] rounded-full overflow-hidden"><div class="h-full bg-[#8B5E34]" style="width:${pct}%"></div></div><p class="text-xs text-[#6F4C3E] mt-1">Usado ${fmtCLP(c.usado)} / Cupo ${fmtCLP(c.cupo)}</p><div class="mt-3 flex gap-1.5 flex-wrap"><button onclick="toggle('${c.id}')" class="px-3 py-1.5 rounded-full bg-[#3C2415] text-[#FEFAE0] text-xs font-bold">${c.estado==='Activa'?'Congelar':'Activar'}</button><button onclick="editCupo('${c.id}')" class="px-3 py-1.5 rounded-full bg-white border border-[#E6CCB2] text-xs font-bold">Editar cupo</button><button onclick="anular('${c.id}')" class="px-3 py-1.5 rounded-full bg-white border border-red-200 text-red-600 text-xs font-bold">Anular</button></div></div>`;
+  }).join('')||`<p class="col-span-2 text-center py-10 text-[#8D7B6B]">Sin tarjetas</p>`;
+  document.getElementById('balance').textContent=fmtCLP(DB.cards.reduce((a,c)=>a+c.cupo,0));
+  document.getElementById('emitUser').innerHTML=DB.users.filter(u=>u.role==='user').map(u=>`<option value="${u.id}">${u.name} — ${u.email}</option>`).join('');
+  const navU=document.getElementById('navUsersCount'); if(navU) navU.textContent=DB.users.length;
+}
+function toggle(id){ const c=DB.cards.find(x=>x.id===id); if(c.estado==='Anulada'){ toast('Anulada no se puede activar','err'); return;} c.estado=c.estado==='Activa'?'Congelada':'Activa'; saveDB(); auditLog(`Tarjeta ${c.number.slice(-4)} → ${c.estado}`); render(); toast(`Tarjeta ${c.estado} ☕`,'ok');}
+async function editCupo(id){
+  const c=DB.cards.find(x=>x.id===id);
+  const body = `<p>Modifica el cupo de la tarjeta <span class="mono font-bold">${c.number}</span></p><p class="text-xs text-[#8D7B6B] mt-1">Usado actual: <b>${fmtCLP(c.usado)}</b> • Cupo actual: <b>${fmtCLP(c.cupo)}</b>.</p>`;
+  const v = await fcPrompt('Editar cupo', body, {inputLabel:'NUEVO CUPO (CLP)', inputValue: String(c.cupo), inputPlaceholder:'Ej: 800000', inputHint:'Mínimo $100.000', inputType:'number', icon:'💳', iconClass:'bg-[#8B5E34] text-white', confirmText:'Actualizar'});
+  if(v===false || v===null) return;
+  const str = String(v).trim();
+  if(!str) return;
+  const n=parseInt(str); if(isNaN(n)||n<100000){ toast('Cupo no válido','err'); return;} c.cupo=n; if(c.usado>n) c.usado=n; saveDB(); auditLog(`Cupo ${c.number.slice(-4)} → ${fmtCLP(n)}`); render(); toast('Cupo actualizado ☕','ok');
+}
+async function anular(id){
+  const c=DB.cards.find(x=>x.id===id);
+  const ok = await fcConfirm('¿Anular tarjeta?', `<p>¿Seguro que deseas <b class="text-red-600">anular</b> la tarjeta <span class="mono font-bold">${c.number}</span> de <b>${c.holder}</b>?</p><p class="text-xs text-[#8D7B6B] mt-2">Acción irreversible — estilo cafetero pero definitivo.</p>`, {icon:'⚠', iconClass:'bg-red-600 text-white', confirmText:'Sí, anular', cancelText:'Cancelar', danger:true});
+  if(!ok) return;
+  c.estado='Anulada'; saveDB(); auditLog(`Tarjeta anulada ${c.number.slice(-4)}`); render(); toast('Tarjeta anulada','ok');
+}
+function openEmit(){ document.getElementById('modal').classList.remove('hidden');}
+function closeEmit(){ document.getElementById('modal').classList.add('hidden');}
+function handleEmit(e){ e.preventDefault(); const userId=document.getElementById('emitUser').value; const type=document.getElementById('emitType').value; const cupo=parseInt(document.getElementById('emitCupo').value); const limite=parseInt(document.getElementById('emitLimite').value); const user=DB.users.find(u=>u.id===userId); const card={id:'c'+Date.now(), userId, number:'4509 88'+Math.floor(1000+Math.random()*9000)+' '+Math.floor(1000+Math.random()*9000)+' '+Math.floor(1000+Math.random()*9000), holder:user.name.toUpperCase(), expiry:'12/29', cvv:String(Math.floor(100+Math.random()*900)), type, cupo, usado:0, estado:'Activa', limiteATM:limite, color:type==='Física'?'from-[#3C2415] to-[#6F4C3E]':'from-[#8B5E34] to-[#D4A373]'}; DB.cards.push(card); saveDB(); auditLog(`Emisión ${type} para ${user.email} ${fmtCLP(cupo)}`); closeEmit(); render(); toast('Tarjeta emitida ☕','ok');}
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>

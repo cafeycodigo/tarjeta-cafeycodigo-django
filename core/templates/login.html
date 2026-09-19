@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta CafeyCodigo — Iniciar Sesión</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>*{font-family:Inter,sans-serif}.serif{font-family:'Playfair Display',serif}.mono{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-[#FFF8E7] text-[#3C2415] antialiased">
+<nav class="bg-[#FFFBEB] border-b border-[#E6CCB2]">
+  <div class="max-w-[1440px] mx-auto px-4 lg:px-8 h-[64px] flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</div><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">ACCESO</span></a>
+    <div class="flex gap-2"><a href="index.html" class="px-4 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold">← Inicio</a><a href="registro.html" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Crear cuenta</a></div>
+  </div>
+</nav>
+<div class="max-w-[1100px] mx-auto px-4 py-8 lg:py-10">
+  <div class="mb-6 bg-white border border-[#E6CCB2] rounded-2xl px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+    <div><p class="text-xs font-bold tracking-widest text-[#8B5E34]">ACCESO AL TEMPLATE</p><p class="text-sm text-[#6F4C3E]"><b>Iniciar sesión</b> — elige tu rol y entra al panel correspondiente. Simulación sin backend.</p></div>
+    <span class="text-xs font-mono bg-[#3C2415] text-[#FEFAE0] px-3 py-1.5 rounded-full">Admin • Cliente</span>
+  </div>
+
+  <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-6">
+    <div class="bg-white rounded-[28px] border border-[#E6CCB2] p-8 shadow-[0_10px_30px_rgba(60,36,21,0.06)]">
+      <h1 class="text-[32px] font-black tracking-tight leading-none serif">Bienvenido de vuelta</h1>
+      <p class="text-sm text-[#6F4C3E] mt-2">Inicia sesión para gestionar tus tarjetas con el estilo cálido de CafeyCodigo.</p>
+      <form onsubmit="handleLogin(event)" class="mt-7 space-y-4">
+        <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">EMAIL</label><input id="loginEmail" type="email" required value="user@cafeycodigo.cl" class="mt-1.5 w-full px-4 py-3.5 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="tu@email.cl"></div>
+        <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">CONTRASEÑA</label><input id="loginPass" type="password" required value="user123" class="mt-1.5 w-full px-4 py-3.5 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="••••••••">
+          <div class="mt-2 flex gap-2"><button type="button" onclick="fillLogin('admin')" class="text-xs font-bold px-3 py-1.5 rounded-full bg-[#3C2415] text-[#FEFAE0]">Probar admin</button><button type="button" onclick="fillLogin('user')" class="text-xs font-bold px-3 py-1.5 rounded-full bg-white border border-[#E6CCB2]">Probar cliente</button><button type="button" onclick="fillLogin('bad')" class="text-xs font-bold px-3 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700">Probar error</button></div>
+        </div>
+        <button class="w-full py-3.5 rounded-full bg-[#8B5E34] text-white font-bold hover:bg-[#6F4C3E]">Entrar ☕</button>
+        <p id="loginError" class="hidden text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2"></p>
+        <p class="text-sm text-center text-[#6F4C3E]">¿No tienes cuenta? <a href="registro.html" class="font-bold text-[#8B5E34] underline">Regístrate</a></p>
+      </form>
+      <div class="mt-6 p-4 rounded-2xl bg-[#FEFAE0] border border-[#E6CCB2]">
+        <p class="text-xs font-bold tracking-widest text-[#8B5E34]">TEMPLATE • 2 ROLES</p><p class="text-xs text-[#6F4C3E] mt-1">Admin accede al panel de gestión. Cliente al portal de tarjetas. Todo simulado en LocalStorage.</p>
+      </div>
+    </div>
+
+    <div class="bg-[#3C2415] rounded-[28px] p-8 text-[#FEFAE0] relative overflow-hidden flex flex-col">
+      <div class="absolute -top-20 -right-20 w-72 h-72 bg-[#8B5E34] rounded-full blur-[60px] opacity-30"></div>
+      <p class="text-xs font-bold tracking-widest text-[#D4A373]">ACCESO POR ROL</p>
+      <h2 class="mt-3 text-[22px] font-black leading-tight serif">Elige cómo quieres<br>degustar la experiencia.</h2>
+      <div class="mt-6 space-y-3 text-sm">
+        <div class="bg-white/10 border border-white/15 rounded-2xl p-4"><p class="font-bold text-[#FEFAE0]">☕ Administrador</p><p class="text-[#E6CCB2] text-xs mt-1">Gestiona usuarios, emite tarjetas, ajusta cupos y límites. Estilo espresso intenso.</p></div>
+        <div class="bg-white/10 border border-white/15 rounded-2xl p-4"><p class="font-bold text-[#FEFAE0]">🤎 Cliente</p><p class="text-[#E6CCB2] text-xs mt-1">Ve tus tarjetas latte, CVV dinámico, movimientos y operaciones con calidez.</p></div>
+        <div class="bg-[#8B5E34] rounded-2xl p-4"><p class="font-bold text-white">Tip cafetero</p><p class="text-[#FEFAE0] text-xs mt-1">Usa los botones 1-click para probar sin escribir — como pedir tu café favorito.</p></div>
+      </div>
+      <div class="mt-auto pt-6">
+        <p class="text-xs font-bold tracking-widest text-[#D4A373]">CREDENCIALES DEMO</p>
+        <div class="mt-3 space-y-2 mono text-xs">
+          <div class="flex justify-between bg-[#FEFAE0] text-[#3C2415] rounded-xl px-3 py-2"><span>admin@cafeycodigo.cl</span><span>admin123</span></div>
+          <div class="flex justify-between bg-white/15 border border-white/20 rounded-xl px-3 py-2"><span>user@cafeycodigo.cl</span><span>user123</span></div>
+        </div>
+        <div class="mt-4 flex gap-2"><button onclick="quickLogin('admin')" class="flex-1 py-2.5 rounded-full bg-[#8B5E34] font-bold text-sm hover:bg-[#6F4C3E]">☕ Admin</button><button onclick="quickLogin('user')" class="flex-1 py-2.5 rounded-full bg-[#A47148] font-bold text-sm hover:bg-[#7A4A2E]">🤎 Cliente</button></div>
+      </div>
+    </div>
+  </div>
+  <p class="text-center text-xs text-[#8B5E34]/70 py-8">Template Tarjeta CafeyCodigo • Paleta cafetería • <a href="index.html" class="underline font-bold">Inicio</a> • <a href="registro.html" class="underline font-bold">Registro</a></p>
+</div>
+<script src="js/app.js"></script>
+<script>
+function fillLogin(role){
+  const e=document.getElementById('loginEmail'), p=document.getElementById('loginPass');
+  if(role==='admin'){ e.value='admin@cafeycodigo.cl'; p.value='admin123';}
+  else if(role==='user'){ e.value='user@cafeycodigo.cl'; p.value='user123';}
+  else { e.value='noexiste@test.cl'; p.value='wrong';}
+}
+function handleLogin(ev){
+  ev.preventDefault();
+  const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginError');
+  const user=DB.users.find(u=>u.email.toLowerCase()===email && u.pass===pass);
+  if(!user){ err.textContent='Credenciales no válidas. Prueba con las demos.'; err.classList.remove('hidden'); toast('Credenciales no válidas','err'); return; }
+  if(user.estado==='Bloqueado'||user.estado==='Suspendido'){ err.textContent=`Cuenta ${user.estado}. Contacta a soporte.`; err.classList.remove('hidden'); toast(`Cuenta ${user.estado}`,'err'); return; }
+  DB.session={userId:user.id, role:user.role, token:'fake-jwt-'+user.role, loginAt:new Date().toISOString()};
+  saveDB(); auditLog(`Inicio de sesión (${user.role})`); toast(`Bienvenido ${user.name}`,'ok');
+  setTimeout(()=> location.href = user.role==='admin' ? 'admin-dashboard.html' : 'user-home.html', 600);
+}
+</script>
+</body>
+</html>

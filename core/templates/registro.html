@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarjeta CafeyCodigo — Crear Cuenta</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>*{font-family:Inter,sans-serif}.serif{font-family:'Playfair Display',serif}.mono{font-family:'JetBrains Mono',monospace}</style>
+</head>
+<body class="bg-[#FFF8E7] text-[#3C2415]">
+<nav class="bg-[#FFFBEB] border-b border-[#E6CCB2]">
+  <div class="max-w-[1100px] mx-auto px-4 h-[64px] flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-[#3C2415] grid place-items-center text-[#FEFAE0] font-black">☕</div><span class="font-black serif">Tarjeta CafeyCodigo</span><span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#D4A373] text-[#3C2415]">REGISTRO</span></a>
+    <div class="flex gap-2"><a href="index.html" class="px-4 py-2 rounded-full border border-[#E6CCB2] bg-white text-sm font-semibold">← Inicio</a><a href="login.html" class="px-4 py-2 rounded-full bg-[#3C2415] text-[#FEFAE0] text-sm font-bold">Iniciar sesión</a></div>
+  </div>
+</nav>
+<div class="max-w-[1100px] mx-auto px-4 py-8">
+  <div class="mb-6 bg-white border border-[#E6CCB2] rounded-2xl px-5 py-4 flex flex-wrap justify-between gap-3">
+    <div><p class="text-xs font-bold tracking-widest text-[#8B5E34]">ÚNETE A LA CAFETERÍA</p><p class="text-sm text-[#6F4C3E]"><b>Crear cuenta</b> — datos básicos y tu primera tarjeta virtual estilo latte, lista al instante.</p></div>
+    <span class="mono text-xs bg-[#3C2415] text-[#FEFAE0] px-3 py-1.5 rounded-full h-fit">☕ + tarjeta virtual</span>
+  </div>
+  <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-6">
+    <div class="bg-[#3C2415] rounded-[28px] p-8 text-[#FEFAE0] hidden lg:flex flex-col relative overflow-hidden">
+      <div class="absolute -top-10 -right-10 w-48 h-48 bg-[#D4A373]/20 rounded-full blur-[30px]"></div>
+      <p class="text-xs font-bold tracking-widest text-[#D4A373]">EXPERIENCIA CÁLIDA</p>
+      <h2 class="mt-3 text-[28px] font-black leading-none serif">Crea tu cuenta<br>y recibe tu primera<br>tarjeta al instante.</h2>
+      <p class="text-sm text-[#E6CCB2] mt-3">Inspirado en la calidez de una cafetería artesanal. Proceso simple, acogedor y sin fricción.</p>
+      <div class="mt-6 space-y-3">
+        <div class="flex gap-3 bg-white/10 border border-white/15 rounded-2xl p-4"><span class="w-8 h-8 rounded-full bg-[#FEFAE0] text-[#3C2415] grid place-items-center font-bold text-sm shrink-0">1</span><div><p class="font-bold text-sm">Datos básicos</p><p class="text-xs text-[#E6CCB2]">Nombre, RUT, email y teléfono.</p></div></div>
+        <div class="flex gap-3 bg-white/10 border border-white/15 rounded-2xl p-4"><span class="w-8 h-8 rounded-full bg-[#D4A373] text-[#3C2415] grid place-items-center font-bold text-sm">2</span><div><p class="font-bold text-sm">Verificación ligera</p><p class="text-xs text-[#E6CCB2]">Confirmación simulada, sin trámites.</p></div></div>
+        <div class="flex gap-3 bg-white/10 border border-white/15 rounded-2xl p-4"><span class="w-8 h-8 rounded-full bg-[#8B5E34] text-white grid place-items-center font-bold text-sm">3</span><div><p class="font-bold text-sm">Tarjeta latte</p><p class="text-xs text-[#E6CCB2]">Virtual con cupo $500.000 lista para usar.</p></div></div>
+      </div>
+      <div class="mt-auto pt-6 bg-[#FEFAE0] rounded-2xl p-4 text-[#3C2415]"><p class="text-xs font-bold tracking-widest text-[#8B5E34]">INCLUYE</p><div class="mt-2 flex items-center gap-2 text-xs font-bold"><span class="px-2.5 py-1 rounded-full bg-[#3C2415] text-[#FEFAE0]">☕ Diseño</span><span class="px-2.5 py-1 rounded-full bg-[#8B5E34] text-white">✦ Tarjeta</span><span class="px-2.5 py-1 rounded-full bg-[#A47148] text-white">Portal</span></div></div>
+    </div>
+    <div class="bg-white rounded-[28px] border border-[#E6CCB2] p-8 shadow-[0_10px_30px_rgba(60,36,21,0.06)]">
+      <h1 class="text-[28px] font-black tracking-tight serif">Crear cuenta</h1>
+      <p class="text-sm text-[#6F4C3E] mt-1">Únete y explora el template completo con tus propias tarjetas.</p>
+      <form onsubmit="handleRegister(event)" class="mt-6 space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">NOMBRE COMPLETO</label><input id="regName" required class="mt-1.5 w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="Ej: Camila Rojas"></div>
+          <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">RUT / DNI</label><input id="regRut" required class="mt-1.5 w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="12.345.678-9"></div>
+        </div>
+        <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">EMAIL</label><input id="regEmail" type="email" required class="mt-1.5 w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="tu@email.cl"></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">TELÉFONO</label><input id="regPhone" required class="mt-1.5 w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="+56 9 1234 5678"></div>
+          <div><label class="text-xs font-bold tracking-widest text-[#8B5E34]">CONTRASEÑA</label><input id="regPass" type="password" required class="mt-1.5 w-full px-4 py-3 rounded-2xl border border-[#E6CCB2] bg-[#FFF8E7] focus:bg-white focus:ring-2 focus:ring-[#8B5E34] outline-none text-sm" placeholder="Mín. 6 caracteres"></div>
+        </div>
+        <label class="flex items-center gap-2 text-xs text-[#6F4C3E]"><input type="checkbox" required class="rounded accent-[#8B5E34]"> Acepto crear mi tarjeta virtual (simulado) ☕</label>
+        <button class="w-full py-3.5 rounded-full bg-[#3C2415] text-[#FEFAE0] font-bold hover:bg-black">Crear cuenta ☕</button>
+        <p id="regError" class="hidden text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2"></p>
+        <p class="text-sm text-center text-[#6F4C3E]">¿Ya tienes cuenta? <a href="login.html" class="font-bold text-[#8B5E34] underline">Inicia sesión</a></p>
+      </form>
+    </div>
+  </div>
+  <p class="text-center text-xs text-[#8B5E34]/60 py-8"><a href="index.html" class="underline font-bold">Inicio</a> • Registro • <a href="login.html" class="underline font-bold">Login</a></p>
+</div>
+<script src="js/app.js"></script>
+<script>
+function handleRegister(e){
+  e.preventDefault();
+  const name=document.getElementById('regName').value.trim();
+  const rut=document.getElementById('regRut').value.trim();
+  const email=document.getElementById('regEmail').value.trim().toLowerCase();
+  const phone=document.getElementById('regPhone').value.trim();
+  const pass=document.getElementById('regPass').value;
+  const err=document.getElementById('regError');
+  if(DB.users.some(u=>u.email.toLowerCase()===email)){ err.textContent='Email ya registrado. Usa otro o inicia sesión.'; err.classList.remove('hidden'); return; }
+  if(pass.length<6){ err.textContent='Contraseña mínimo 6 caracteres'; err.classList.remove('hidden'); return; }
+  const newUser={id:'u'+Date.now(), name, rut, email, phone, pass, role:'user', estado:'Activo', created:new Date().toISOString().slice(0,10)};
+  DB.users.push(newUser);
+  const newCard={id:'c'+Date.now(), userId:newUser.id, number:'4509 88'+Math.floor(1000+Math.random()*9000)+' '+Math.floor(1000+Math.random()*9000)+' '+Math.floor(1000+Math.random()*9000), holder:name.toUpperCase(), expiry:'12/29', cvv:String(Math.floor(100+Math.random()*900)), type:'Virtual', cupo:500000, usado:0, estado:'Activa', limiteATM:200000, color:'from-[#8B5E34] to-[#D4A373]'};
+  DB.cards.push(newCard);
+  DB.session={userId:newUser.id, role:'user', token:'fake', loginAt:new Date().toISOString()};
+  saveDB(); auditLog(`Nueva cuenta: ${email}`); toast('Cuenta creada ☕ + tarjeta latte asignada','ok');
+  setTimeout(()=> location.href='user-home.html', 700);
+}
+</script>
+</body>
+</html>
